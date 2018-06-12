@@ -28,7 +28,7 @@ $notFound = isset($_GET['not-found']);
         <?php require 'templates/head.php' ?>
     </head>
     <body>
-        <?php require 'templates/title.php' ; ?>
+        <?php require 'templates/title.php' ?>
 
         <?php if ($notFound): ?>
             <div class="error box">
@@ -38,24 +38,30 @@ $notFound = isset($_GET['not-found']);
 
         <div class="post-list">
             <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-                <div class="post-synopsis">
+                <div class="post-synopsis"> 
                     <h2>
                         <?php echo htmlEscape($row['title']) ?>
                     </h2>
                     <div class="meta">
                         <?php echo convertSqlDate($row['created_at']) ?>
+
                         (<?php echo countCommentsForPost($pdo, $row['id']) ?> comments)
                     </div>
                     <p>
                         <?php echo htmlEscape($row['body']) ?>
                     </p>
-                    <div class="read-more">
-                        <a
-                            href="view-post.php?post_id=<?php echo $row['id'] ?>"
+                    <div class="post-controls">
+                        <a href="view-post.php?post_id=<?php echo $row['id'] ?>"
                         >Read more...</a>
+                        
+                        <?php if (isLoggedIn()): ?>
+                            <a href="edit-post.php?post_id=<?php echo $row['id'] ?>"
+                            >Edit</a>
+                        <?php endif ?>
                     </div>
                 </div>
             <?php endwhile ?>
         </div>
+
     </body>
 </html>
