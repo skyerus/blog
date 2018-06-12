@@ -1,6 +1,5 @@
 <?php
 require_once 'lib/common.php';
-require_once 'vendor/password_compat/lib/password.php';
 
 // We need to test for a minimum version of PHP, because earlier versions have bugs that affect security
 if (version_compare(PHP_VERSION, '5.3.7') < 0)
