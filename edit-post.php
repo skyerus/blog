@@ -29,7 +29,6 @@ if (isset($_GET['post_id']))
     }
 }
 
-
 // Handle the post operation here
 $errors = array();
 if ($_POST)
@@ -45,6 +44,7 @@ if ($_POST)
     {
         $errors[] = 'The post must have a body';
     }
+
     if (!$errors)
     {
         $pdo = getPDO();
@@ -57,17 +57,20 @@ if ($_POST)
         {
             $userId = getAuthUserId($pdo);
             $postId = addPost($pdo, $title, $body, $userId);
+
             if ($postId === false)
             {
                 $errors[] = 'Post operation failed';
             }
         }
     }
+
     if (!$errors)
     {
         redirectAndExit('edit-post.php?post_id=' . $postId);
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,7 +79,24 @@ if ($_POST)
         <?php require 'templates/head.php' ?>
     </head>
     <body>
-        <?php require 'templates/title.php' ?>
+        <?php require 'templates/top-menu.php' ?>
+
+        <?php if (isset($_GET['post_id'])): ?>
+            <h1>Edit post</h1>
+        <?php else: ?>
+            <h1>New post</h1>
+        <?php endif ?>
+
+        <?php if ($errors): ?>
+            <div class="error box">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo $error ?></li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+        <?php endif ?>
+
         <form method="post" class="post-form user-form">
             <div>
                 <label for="post-title">Title:</label>
@@ -101,6 +121,7 @@ if ($_POST)
                     type="submit"
                     value="Save post"
                 />
+                <a href="index.php">Cancel</a>
             </div>
         </form>
     </body>
