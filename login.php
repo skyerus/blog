@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/common.php';
+require_once 'vendor/password_compat/lib/password.php';
 
 // We need to test for a minimum version of PHP, because earlier versions have bugs that affect security
 if (version_compare(PHP_VERSION, '5.3.7') < 0)
@@ -56,19 +57,29 @@ if ($_POST)
         
         <form
             method="post"
+            class="user-form"
         >
-            <p>
-                Username:
+            <div>
+                <label for="username">
+                    Username:
+                </label>
                 <input
                     type="text"
+                    id="username"
                     name="username"
                     value="<?php echo htmlEscape($username) ?>"
                 />
-            </p>
-            <p>
-                Password:
-                <input type="password" name="password" />
-            </p>
+            </div>
+            <div>
+                <label for="password">
+                    Password:
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                />
+            </div>
             <input type="submit" name="submit" value="Login" />
         </form>
     </body>
