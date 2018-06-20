@@ -2,7 +2,7 @@
 
 I spent a lot of time prior to this project going from front-end to back-end developing trying to decide where my skill set and interests lie.
 I've reached the conclusion that PHP & back-end development are what I'd like to take further. This is my first PHP heavy project.
-I am focusing almost entirely on the functionality of the website which leaves the presentation bare bones at this stage.
+I am focusing entirely on the functionality of the website which leaves the presentation bare bones at this stage.
 
 ---
 
