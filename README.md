@@ -30,7 +30,7 @@ I use the [XAMPP](https://www.apachefriends.org/index.html) stack to develop & t
 
 ## Built With
 
-JavaScript & HTML.
+PHP & HTML.
 
 ---
 
